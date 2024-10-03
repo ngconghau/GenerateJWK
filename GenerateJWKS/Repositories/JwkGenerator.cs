@@ -6,13 +6,13 @@ namespace GenerateJWKS.Repositories
 {
     public class JwkGenerator : IJwkGenerator
     {
-        public Tuple<Jose.Jwk, Jose.Jwk> GenerateEcdsaKeyPairs(ECCurve eCCurve, EcdsaAlgorithm algorithm, string keyId)
+        public Tuple<Jose.Jwk, Jose.Jwk, ECDsa> GenerateEcdsaKeyPairs(ECCurve eCCurve, EcdsaAlgorithm algorithm, string keyId)
         {
             var eCDsa = ECDsa.Create(eCCurve);
             var privateKey = GenerateKey(eCDsa, algorithm , keyId);
             var publicKey = GenerateKey(eCDsa, algorithm , keyId, false);
 
-            return Tuple.Create(privateKey, publicKey);
+            return Tuple.Create(privateKey, publicKey, eCDsa);
         }
 
         private Jose.Jwk GenerateKey(ECDsa eCDsa, EcdsaAlgorithm algorithm, string keyId, bool includePrivateKey = true)

@@ -5,6 +5,6 @@ namespace GenerateJWKS.Repositories.Interfaces
 {
     public interface IJwkGenerator
     {
-        Tuple<Jose.Jwk, Jose.Jwk> GenerateEcdsaKeyPairs(ECCurve eCCurve, EcdsaAlgorithm algorithm, string keyId);
+        Tuple<Jose.Jwk, Jose.Jwk, ECDsa> GenerateEcdsaKeyPairs(ECCurve eCCurve, EcdsaAlgorithm algorithm, string keyId);
     }
 }
